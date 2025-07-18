@@ -14,7 +14,7 @@ Any changes you make to your deployed app will be automatically pushed to this r
 
 Your project is live at:
 
-**[https://vercel.com/rajgupta807633-gmailcoms-projects/v0-india-cab-website](https://vercel.com/rajgupta807633-gmailcoms-projects/v0-india-cab-website)**
+**[https://vercel.com/rajgupta807633-gmailcoms-projects/v0-india-cab-website](https://v0-india-cab-website.vercel.app/)**
 
 ## Build your app
 
