@@ -1,0 +1,101 @@
+import { Car, Plane, MapPin, Calendar } from "lucide-react"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import LazyImage from "./lazy-image"
+import IntersectionObserver from "./intersection-observer"
+
+const services = [
+  {
+    icon: Plane,
+    title: "Airport & Railway Transfers",
+    description: "Comfortable rides to/from Varanasi Airport and Railway Station with flight tracking.",
+    features: ["Flight tracking", "Meet & greet service", "Fixed rates", "24/7 availability"],
+    image: "/images/airport-transfer.jpg",
+  },
+  {
+    icon: Car,
+    title: "City Rides",
+    description: "Local transportation within Varanasi for shopping, business, or leisure trips.",
+    features: ["8 hours/80 km package", "AC vehicles", "Experienced drivers", "Multiple stops"],
+    image: "/images/city-rides.jpg",
+  },
+  {
+    icon: MapPin,
+    title: "Outstation Trips",
+    description: "Intercity travel to nearby destinations with comfortable and reliable service.",
+    features: ["12 hours/200 km package", "All India permit", "Fuel included", "Driver allowance"],
+    image: "/images/outstation-trips.jpg",
+  },
+  {
+    icon: Calendar,
+    title: "Multi-day Tour Packages",
+    description: "Customized tour packages for spiritual journeys and cultural exploration.",
+    features: ["Customizable itinerary", "Hotel bookings", "Guide services", "Group discounts"],
+    image: "/images/tour-packages.jpg",
+  },
+]
+
+export default function Services() {
+  return (
+    <section
+      id="services"
+      className="py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 section-transition"
+    >
+      <div className="container mx-auto px-4">
+        <IntersectionObserver>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Our Services</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              From airport transfers to spiritual tours, we provide comprehensive transportation solutions in and around
+              Varanasi
+            </p>
+          </div>
+        </IntersectionObserver>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {services.map((service, index) => (
+            <IntersectionObserver key={index}>
+              <Card
+                className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg rounded-3xl overflow-hidden glass hover:scale-105 animate-in slide-in-from-bottom duration-1000"
+                style={{ animationDelay: `${index * 0.2}s` }}
+              >
+                <div className="relative overflow-hidden">
+                  <LazyImage
+                    src={service.image || "/placeholder.svg"}
+                    alt={service.title}
+                    className="w-full h-48 group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute top-4 left-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-3 rounded-2xl">
+                    <service.icon className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                  </div>
+                </div>
+
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    {service.title}
+                  </CardTitle>
+                  <CardDescription className="text-gray-600 dark:text-gray-300">{service.description}</CardDescription>
+                </CardHeader>
+
+                <CardContent className="pt-0">
+                  <ul className="space-y-2 mb-6">
+                    {service.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                        <div className="w-2 h-2 bg-orange-400 rounded-full mr-3 animate-pulse"></div>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Button className="w-full bg-gradient-to-r from-blue-600 to-orange-500 hover:from-blue-700 hover:to-orange-600 text-white rounded-2xl transform hover:scale-105 transition-all duration-300">
+                    View Rates
+                  </Button>
+                </CardContent>
+              </Card>
+            </IntersectionObserver>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
